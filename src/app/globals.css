@@ -12,15 +12,395 @@
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
 body {
   background: var(--background);
   color: var(--foreground);
+  font-family: var(--font-geist-sans), sans-serif;
+}
+
+@page {
+  size: A4;
+  margin: 0;
+}
+
+/* ===== Pathology report template (print + preview) ===== */
+
+.report-page {
+  position: relative;
+  width: 210mm;
+  min-height: 297mm;
+  background: #fff;
+  overflow: hidden;
   font-family: Arial, Helvetica, sans-serif;
+  color: #111;
+  box-sizing: border-box;
+  padding-bottom: 28mm;
+}
+
+.report-header {
+  height: 27mm;
+  background: #ffd51a;
+  border-bottom: 1px solid #d5b400;
+  display: flex;
+  align-items: center;
+  padding: 4mm 7mm;
+}
+
+.report-logo-area {
+  width: 52%;
+  display: flex;
+  align-items: center;
+}
+
+.report-logo {
+  width: 15mm;
+  height: 19mm;
+  margin-right: 4mm;
+  object-fit: contain;
+}
+
+.report-logo-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0057b8;
+  color: #ffd51a;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.report-brand {
+  color: #0057b8;
+  font-size: 25px;
+  font-weight: bold;
+  font-style: italic;
+  white-space: nowrap;
+}
+
+.report-divider {
+  height: 19mm;
+  width: 1px;
+  background: #174f8e;
+  margin: 0 7mm 0 3mm;
+}
+
+.report-contact {
+  flex: 1;
+  color: #0057b8;
+  font-size: 8px;
+  line-height: 1.25;
+  font-weight: 600;
+}
+
+.report-location {
+  padding: 6mm 12mm 3mm;
+  min-height: 28mm;
+  display: flex;
+  justify-content: space-between;
+}
+
+.report-lab-info {
+  width: 42%;
+  font-size: 9px;
+  line-height: 1.55;
+  font-weight: bold;
+}
+
+.report-doctor {
+  width: 25%;
+  text-align: center;
+  font-size: 8px;
+}
+
+.report-doctor-title {
+  color: #a71930;
+  font-weight: bold;
+}
+
+.patient-box {
+  margin: 0 12mm;
+  border: 1px solid #999;
+  padding: 3mm 4mm;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  font-size: 9px;
+}
+
+.patient-column {
+  position: relative;
+}
+
+.patient-row {
+  display: flex;
+  margin-bottom: 3mm;
+}
+
+.patient-label {
+  width: 25mm;
+  font-weight: bold;
+}
+
+.patient-colon {
+  width: 5mm;
+}
+
+.patient-value {
+  font-weight: bold;
+}
+
+.results-wrapper {
+  margin: 8mm 12mm 0;
+}
+
+.results-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 9px;
+}
+
+.results-table th {
+  text-align: left;
+  padding: 3mm 2mm;
+  border-bottom: 1px solid #222;
+  font-size: 9px;
+}
+
+.results-table td {
+  padding: 1.9mm 2mm;
+  vertical-align: middle;
+}
+
+.test-name {
+  width: 38%;
+}
+
+.result-value {
+  width: 18%;
+  font-weight: bold;
+}
+
+.result-abnormal {
+  color: #b91c1c;
+}
+
+.result-critical {
+  color: #dc2626;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.units {
+  width: 16%;
+}
+
+.reference-range {
+  width: 20%;
+}
+
+.status-col {
+  width: 8%;
+}
+
+.status-cell {
+  font-weight: bold;
+}
+
+.status-abnormal {
+  color: #b91c1c;
+}
+
+.status-critical {
+  color: #dc2626;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.status-pending {
+  color: #64748b;
+}
+
+.status-normal {
+  color: #111;
+}
+
+.panel-title {
+  font-size: 11px;
+  font-weight: bold;
+}
+
+.test-method {
+  font-size: 9px;
+  margin-top: 1mm;
+}
+
+.ai-section {
+  margin-top: 8mm;
+  border: 1px solid #ddd6fe;
+  background: #faf5ff;
+  padding: 4mm;
+}
+
+.ai-title {
+  font-size: 11px;
+  font-weight: bold;
+  color: #5b21b6;
+}
+
+.ai-disclaimer {
+  font-size: 8px;
+  color: #7c3aed;
+  font-style: italic;
+  margin-top: 1mm;
+}
+
+.ai-body {
+  font-size: 9px;
+  margin-top: 3mm;
+  line-height: 1.55;
+}
+
+.ai-subsection {
+  margin-top: 3mm;
+}
+
+.ai-heading {
+  font-size: 10px;
+  font-weight: bold;
+  color: #5b21b6;
+  margin-bottom: 1mm;
+}
+
+.ai-finding {
+  margin-bottom: 2mm;
+}
+
+.ai-finding-name {
+  font-weight: bold;
+}
+
+.ai-finding-abnormal {
+  color: #b91c1c;
+}
+
+.ai-finding-line {
+  margin-left: 3mm;
+}
+
+.ai-finding-note {
+  margin-left: 3mm;
+  color: #444;
+}
+
+.ai-status-low,
+.ai-status-high,
+.ai-status-abnormal {
+  color: #b91c1c;
+  font-weight: bold;
+}
+
+.ai-status-normal {
+  color: #166534;
+}
+
+.ai-list {
+  margin: 0;
+  padding-left: 5mm;
+}
+
+.ai-list li {
+  margin-bottom: 1mm;
+}
+
+.report-footer {
+  position: absolute;
+  bottom: 9mm;
+  left: 12mm;
+  right: 12mm;
+  height: 18mm;
+  display: flex;
+  align-items: flex-end;
+  justify-content: flex-end;
+}
+
+.barcode {
+  width: 47mm;
+  height: 8mm;
+  margin-right: 21mm;
+}
+
+.report-barcode-svg {
+  width: 100%;
+  height: 100%;
+}
+
+.page-number {
+  font-size: 9px;
+  white-space: nowrap;
+}
+
+@media print {
+  html,
+  body {
+    background: #fff !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  /* Hide app chrome only — never the report's own header/footer */
+  aside,
+  .app-header,
+  .print-hide {
+    display: none !important;
+  }
+
+  .app-main {
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .app-shell > div {
+    padding-left: 0 !important;
+  }
+
+  .print-report {
+    border: 0 !important;
+    box-shadow: none !important;
+    max-width: none !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .report-page {
+    margin: 0 !important;
+    border: none;
+    box-shadow: none !important;
+    width: 210mm !important;
+    min-height: 296mm;
+    height: 296mm;
+    overflow: hidden;
+    break-after: page;
+    page-break-after: always;
+  }
+
+  .report-page:last-child {
+    break-after: auto;
+    page-break-after: auto;
+  }
+
+  .results-table tr,
+  .patient-box,
+  .ai-section {
+    break-inside: avoid;
+    page-break-inside: avoid;
+  }
+
+  .results-table thead {
+    display: table-header-group;
+  }
+
+  /* Ensure colors (yellow header, blue text, barcode) print */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
+  }
 }

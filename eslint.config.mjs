@@ -12,6 +12,10 @@ const eslintConfig = defineConfig([
     "out/**",
     "build/**",
     "next-env.d.ts",
+    // Prisma-generated contract artifacts are emitted code and should not be linted
+    "**/contract.d.ts",
+    "**/contract.json",
+    "**/contract.prisma",
   ]),
 ]);
 

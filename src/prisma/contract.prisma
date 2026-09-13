@@ -1,0 +1,153 @@
+// use prisma-next
+
+model Admin {
+  id           Int      @id @default(autoincrement())
+  email        String   @unique
+  passwordHash String
+  name         String
+  createdAt    TimestamptzString @default(now())
+  updatedAt    temporal.updatedAtString()
+}
+
+model Lab {
+  id           Int      @id @default(autoincrement())
+  name         String
+  email        String
+  loginEmail   String   @unique
+  passwordHash String
+
+  phoneCountryCode String?
+  phone            String?
+  address          String?
+  city             String?
+  state            String?
+  pincode          String?
+  registrationNumber String?
+  licenseNumber      String?
+  gstNumber          String?
+  website            String?
+  directorName       String?
+  directorQualification String?
+  logoUrl            String?
+  signatureUrl       String?
+
+  patients    Patient[]
+  reports     Report[]
+  customTests CustomTest[]
+
+  createdAt    TimestamptzString @default(now())
+  updatedAt    temporal.updatedAtString()
+}
+
+model Session {
+  id        Int      @id @default(autoincrement())
+  token     String   @unique
+  role      String
+  adminId   Int?
+  labId     Int?
+  expiresAt TimestamptzString
+  createdAt TimestamptzString @default(now())
+}
+
+// Validated LaboratoryTest JSON retains age/sex-specific ranges without
+// changing the existing report snapshot architecture.
+model CustomTest {
+  id          Int @id @default(autoincrement())
+  code        String
+  lab         Lab? @relation(fields: [labId], references: [id])
+  labId       Int?
+  definition  String
+  createdAt   TimestamptzString @default(now())
+  updatedAt   temporal.updatedAtString()
+}
+
+model Patient {
+  id          Int      @id @default(autoincrement())
+  patientCode String
+  lab         Lab      @relation(fields: [labId], references: [id])
+  labId       Int
+
+  fullName    String
+  dateOfBirth TimestamptzString
+  gender      String
+
+  phoneCountryCode String?
+  phone       String?
+  email       String?
+  address     String?
+  referredBy  String?
+
+  reports     Report[]
+
+  createdAt   TimestamptzString @default(now())
+  updatedAt   temporal.updatedAtString()
+
+  @@unique([labId, patientCode])
+}
+
+model Report {
+  id              Int      @id @default(autoincrement())
+  reportNumber    String   @unique
+
+  patient         Patient  @relation(fields: [patientId], references: [id])
+  patientId       Int
+
+  lab             Lab      @relation(fields: [labId], references: [id])
+  labId           Int
+
+  referredBy      String?
+
+  status          String   @default("DRAFT")
+
+  sampleCollectedAt TimestamptzString?
+  reportDate       TimestamptzString?
+
+  tests           ReportTest[]
+
+  createdAt       TimestamptzString @default(now())
+  updatedAt       temporal.updatedAtString()
+}
+
+model ReportTest {
+  id          Int      @id @default(autoincrement())
+
+  report      Report   @relation(fields: [reportId], references: [id])
+  reportId    Int
+
+  testCode    String
+  testName    String
+  category    String?
+
+  sortOrder   Int      @default(0)
+
+  results     ReportResult[]
+
+  createdAt   TimestamptzString @default(now())
+  updatedAt   temporal.updatedAtString()
+}
+
+model ReportResult {
+  id              Int      @id @default(autoincrement())
+
+  reportTest      ReportTest @relation(fields: [reportTestId], references: [id])
+  reportTestId    Int
+
+  parameterCode   String
+  parameterName   String
+
+  result          String?
+
+  unit            String?
+
+  referenceMin    String?
+  referenceMax    String?
+  referenceDisplay String?
+  inputType       String?
+
+  status          String?
+
+  sortOrder       Int      @default(0)
+
+  createdAt       TimestamptzString @default(now())
+  updatedAt       temporal.updatedAtString()
+}
