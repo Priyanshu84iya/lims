@@ -17,7 +17,41 @@ body {
   color: var(--foreground);
   font-family: var(--font-geist-sans), sans-serif;
 }
+html {
+  scroll-behavior: smooth;
+}
 
+/* ===== Public landing page ===== */
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-up {
+  animation: fade-up 0.7s ease-out both;
+}
+
+.animate-fade-up:nth-child(2) { animation-delay: 0.08s; }
+.animate-fade-up:nth-child(3) { animation-delay: 0.16s; }
+.animate-fade-up:nth-child(4) { animation-delay: 0.24s; }
+.animate-fade-up:nth-child(5) { animation-delay: 0.32s; }
+.animate-fade-up:nth-child(6) { animation-delay: 0.4s; }
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .animate-fade-up {
+    animation: none;
+  }
+}
 @page {
   size: A4;
   margin: 0;
@@ -320,6 +354,31 @@ body {
   display: flex;
   align-items: flex-end;
   justify-content: flex-end;
+}
+
+.signature-area {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.signature-img {
+  height: 12mm;
+  max-width: 35mm;
+  object-fit: contain;
+}
+
+.signature-label {
+  font-size: 8px;
+  font-weight: bold;
+  border-top: 1px solid #111;
+  padding-top: 1mm;
+  margin-top: 1mm;
+  min-width: 30mm;
+  text-align: center;
 }
 
 .barcode {

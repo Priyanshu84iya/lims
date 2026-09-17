@@ -29,6 +29,7 @@ export async function GET(request: Request) {
         directorName: lab.directorName,
         directorQualification: lab.directorQualification,
         logoUrl: lab.logoUrl,
+        signatureUrl: lab.signatureUrl,
       },
     });
   } catch (error) {

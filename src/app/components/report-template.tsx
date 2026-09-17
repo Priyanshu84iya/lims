@@ -300,6 +300,13 @@ export function ReportPage({
       </section>
 
       <footer className="report-footer">
+        {lab.signatureUrl ? (
+          <div className="signature-area">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img className="signature-img" src={lab.signatureUrl} alt="Signature" />
+            <div className="signature-label">Authorized Signatory</div>
+          </div>
+        ) : null}
         <div className="barcode">
           <Barcode value={report.reportNumber.replace(/[^A-Za-z0-9-]/g, "")} />
         </div>

@@ -151,3 +151,15 @@ model ReportResult {
   createdAt       TimestamptzString @default(now())
   updatedAt       temporal.updatedAtString()
 }
+
+// Public website inquiries submitted through the landing page contact form.
+model ContactMessage {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String
+  subject   String
+  message   String
+  isRead    Boolean  @default(false)
+  createdAt TimestamptzString @default(now())
+  updatedAt temporal.updatedAtString()
+}

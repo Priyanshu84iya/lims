@@ -52,6 +52,7 @@ export type LabInfo = {
   directorName: string | null;
   directorQualification: string | null;
   logoUrl: string | null;
+  signatureUrl: string | null;
 };
 
 export const DEFAULT_LAB: LabInfo = {
@@ -70,6 +71,7 @@ export const DEFAULT_LAB: LabInfo = {
   directorName: null,
   directorQualification: null,
   logoUrl: null,
+  signatureUrl: null,
 };
 
 export function labAddressLine(lab: LabInfo) {

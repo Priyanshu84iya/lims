@@ -9,7 +9,7 @@ function labResponse(lab: {
   city: string | null; state: string | null; pincode: string | null;
   registrationNumber: string | null; licenseNumber: string | null; gstNumber: string | null;
   website: string | null; directorName: string | null; directorQualification: string | null;
-  logoUrl: string | null; createdAt: string;
+  logoUrl: string | null; signatureUrl: string | null; createdAt: string;
 }) {
   return {
     id: lab.id,
@@ -29,6 +29,7 @@ function labResponse(lab: {
     directorName: lab.directorName,
     directorQualification: lab.directorQualification,
     logoUrl: lab.logoUrl,
+    signatureUrl: lab.signatureUrl,
     createdAt: lab.createdAt,
   };
 }
@@ -67,7 +68,7 @@ export async function POST(request: Request) {
       name, email, loginEmail, password,
       phoneCountryCode, phone, address, city, state, pincode,
       registrationNumber, licenseNumber, gstNumber, website,
-      directorName, directorQualification, logoUrl,
+      directorName, directorQualification, logoUrl, signatureUrl,
     } = body;
 
     if (!name?.trim() || !loginEmail?.trim() || !password) {
@@ -110,6 +111,7 @@ export async function POST(request: Request) {
       directorName: directorName || null,
       directorQualification: directorQualification || null,
       logoUrl: logoUrl || null,
+      signatureUrl: signatureUrl || null,
     });
 
     return Response.json({ success: true, lab: labResponse(lab) });

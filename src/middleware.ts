@@ -3,6 +3,11 @@ import { NextRequest, NextResponse } from "next/server";
 const SESSION_COOKIE = "lims_session";
 const PUBLIC_PATHS = ["/login"];
 
+function isPublicPath(pathname: string) {
+  // The public landing page lives at the root.
+  return pathname === "/" || PUBLIC_PATHS.some((path) => pathname.startsWith(path));
+}
+
 export function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
@@ -15,7 +20,7 @@ export function middleware(request: NextRequest) {
   }
 
   const hasSession = Boolean(request.cookies.get(SESSION_COOKIE)?.value);
-  const isPublic = PUBLIC_PATHS.some((path) => pathname.startsWith(path));
+  const isPublic = isPublicPath(pathname);
 
   if (!hasSession && !isPublic) {
     const loginUrl = new URL("/login", request.url);

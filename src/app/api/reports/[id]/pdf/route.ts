@@ -1,4 +1,6 @@
 import { chromium } from "playwright-core";
+import { readFile } from "fs/promises";
+import path from "path";
 import { db } from "@/prisma/db";
 import { forbidden, getAuth, unauthorized } from "@/lib/auth";
 import { labAddressLine, referenceText, calculateAge, formatDateTime, AI_DISCLAIMER, type LabInfo, type ReportRecord, type ReportResult, type ReportTest } from "@/lib/report-render-data";
@@ -11,6 +13,29 @@ const AI_SECTION_MM = 70;
 
 function escapeHtml(value: string) {
   return value.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+}
+
+const MIME_BY_EXT: Record<string, string> = {
+  ".png": "image/png",
+  ".jpg": "image/jpeg",
+  ".jpeg": "image/jpeg",
+  ".webp": "image/webp",
+  ".gif": "image/gif",
+  ".svg": "image/svg+xml",
+};
+
+/* page.setContent() has no base URL, so relative /uploads/... srcs fail in the
+   generated PDF. Convert local public files to data URIs before rendering. */
+async function toDataUri(url: string | null | undefined): Promise<string | null> {
+  if (!url || !url.startsWith("/")) return url || null;
+  try {
+    const filePath = path.join(process.cwd(), "public", url.replace(/^\//, ""));
+    const data = await readFile(filePath);
+    const mime = MIME_BY_EXT[path.extname(filePath).toLowerCase()] || "application/octet-stream";
+    return `data:${mime};base64,${data.toString("base64")}`;
+  } catch {
+    return null;
+  }
 }
 
 function paginateTests(tests: ReportTest[], analysis?: string): ReportTest[][] {
@@ -85,6 +110,10 @@ function renderPage(report: ReportRecord, lab: LabInfo, pageTests: ReportTest[],
   const logo = lab.logoUrl
     ? `<img class="report-logo" src="${escapeHtml(lab.logoUrl)}" alt="${escapeHtml(lab.name)}" />`
     : `<div class="report-logo report-logo-fallback">${escapeHtml(lab.name.charAt(0).toUpperCase())}</div>`;
+
+  const signature = lab.signatureUrl
+    ? `<div class="signature-area"><img class="signature-img" src="${escapeHtml(lab.signatureUrl)}" alt="Signature" /><div class="signature-label">Authorized Signatory</div></div>`
+    : "";
 
   const testRows = pageTests.length === 0 ? "" : pageTests.map((test) => `
     <tr>
@@ -168,6 +197,7 @@ function renderPage(report: ReportRecord, lab: LabInfo, pageTests: ReportTest[],
       ${aiSection}
     </section>
     <footer class="report-footer">
+      ${signature}
       <div class="barcode"><svg class="report-barcode-svg" data-barcode="${escapeHtml(report.reportNumber.replace(/[^A-Za-z0-9-]/g, ""))}"></svg></div>
       <div class="page-number">Page ${pageNumber} of ${totalPages}</div>
     </footer>
@@ -245,6 +275,9 @@ body { margin: 0; background: #fff; font-family: Arial, Helvetica, sans-serif; c
 .ai-list { margin: 0; padding-left: 5mm; }
 .ai-list li { margin-bottom: 1mm; }
 .report-footer { position: absolute; bottom: 9mm; left: 12mm; right: 12mm; height: 18mm; display: flex; align-items: flex-end; justify-content: flex-end; }
+.signature-area { position: absolute; left: 0; bottom: 0; display: flex; flex-direction: column; align-items: center; }
+.signature-img { height: 12mm; max-width: 35mm; object-fit: contain; }
+.signature-label { font-size: 8px; font-weight: bold; border-top: 1px solid #111; padding-top: 1mm; margin-top: 1mm; min-width: 30mm; text-align: center; }
 .barcode { width: 47mm; height: 8mm; margin-right: 21mm; }
 .report-barcode-svg { width: 100%; height: 100%; }
 .page-number { font-size: 9px; white-space: nowrap; }
@@ -300,7 +333,8 @@ export async function POST(request: Request, { params }: { params: Promise<{ id:
       website: lab.website,
       directorName: lab.directorName,
       directorQualification: lab.directorQualification,
-      logoUrl: lab.logoUrl,
+      logoUrl: await toDataUri(lab.logoUrl),
+      signatureUrl: await toDataUri(lab.signatureUrl),
     };
 
     const html = renderDocument(reportRecord, labInfo, analysis);

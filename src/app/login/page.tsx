@@ -43,7 +43,7 @@ export default function LoginPage() {
       });
       const data = await response.json();
       if (!response.ok || !data.success) throw new Error(data.error || "Login failed.");
-      router.push(data.role === "ADMIN" ? "/admin" : "/");
+      router.push(data.role === "ADMIN" ? "/admin" : "/dashboard");
       router.refresh();
     } catch (loginError) {
       setError(loginError instanceof Error ? loginError.message : "Login failed. Please try again.");

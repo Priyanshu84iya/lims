@@ -17,7 +17,7 @@ import {
 } from "lucide-react";
 
 const navigation = [
-  { href: "/", label: "Dashboard", icon: LayoutDashboard },
+  { href: "/dashboard", label: "Dashboard", icon: LayoutDashboard },
   { href: "/reception", label: "Reception", icon: UserPlus },
   { href: "/reports/new", label: "Create report", icon: FileText },
   { href: "/reports", label: "Reports", icon: Activity },
@@ -99,7 +99,7 @@ function Brand({ labName }: { labName?: string }) {
   const words = (labName || "Northstar Diagnostics").trim().split(/\s+/);
   const first = words[0] || "LAB";
   const rest = words.slice(1).join(" ");
-  return <Link href="/" className="flex items-center gap-3 px-5 py-5"><span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-teal-700 text-white"><FlaskConical size={21} /></span><span><span className="block text-sm font-bold tracking-[0.18em] text-teal-800">{first.toUpperCase()}</span><span className="block text-xs text-slate-500">{rest || "Laboratory"}</span></span></Link>;
+  return <Link href="/dashboard" className="flex items-center gap-3 px-5 py-5"><span className="flex size-10 shrink-0 items-center justify-center rounded-xl bg-teal-700 text-white"><FlaskConical size={21} /></span><span><span className="block text-sm font-bold tracking-[0.18em] text-teal-800">{first.toUpperCase()}</span><span className="block text-xs text-slate-500">{rest || "Laboratory"}</span></span></Link>;
 }
 
 function NavItem({ item, onNavigate }: { item: (typeof navigation)[number]; onNavigate?: () => void }) {
