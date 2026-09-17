@@ -1,10 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 
 const SESSION_COOKIE = "lims_session";
-const PUBLIC_PATHS = ["/login"];
+const PUBLIC_PATHS = ["/login", "/about", "/contact"];
 
 function isPublicPath(pathname: string) {
-  // The public landing page lives at the root.
+  // Public marketing pages: landing, about, contact.
   return pathname === "/" || PUBLIC_PATHS.some((path) => pathname.startsWith(path));
 }
 
