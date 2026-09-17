@@ -6,9 +6,8 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { PublicHeader } from "../components/public-header";
-import { PublicFooter } from "../components/public-footer";
-import { AshnaAIWidget } from "../components/ashna-ai-widget";
+import { PublicHeader } from "../../components/public-header";
+import { PublicFooter } from "../../components/public-footer";
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
@@ -185,7 +184,6 @@ export default function ContactPage() {
       </main>
 
       <PublicFooter />
-      <AshnaAIWidget />
     </div>
   );
 }

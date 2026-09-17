@@ -1,9 +1,8 @@
 import Link from "next/link";
 import { FileText, FlaskConical, Printer, QrCode, ShieldCheck, Sparkles, UserPlus } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { PublicHeader } from "./components/public-header";
-import { PublicFooter } from "./components/public-footer";
-import { AshnaAIWidget } from "./components/ashna-ai-widget";
+import { PublicHeader } from "../components/public-header";
+import { PublicFooter } from "../components/public-footer";
 
 const HIGHLIGHTS = [
   { icon: UserPlus, label: "Patient registration" },
@@ -72,7 +71,6 @@ export default function LandingPage() {
       </main>
 
       <PublicFooter />
-      <AshnaAIWidget />
     </div>
   );
 }

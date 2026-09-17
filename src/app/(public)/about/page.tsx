@@ -16,9 +16,8 @@ import {
   Sparkles,
   UserPlus,
 } from "lucide-react";
-import { PublicHeader } from "../components/public-header";
-import { PublicFooter } from "../components/public-footer";
-import { AshnaAIWidget } from "../components/ashna-ai-widget";
+import { PublicHeader } from "../../components/public-header";
+import { PublicFooter } from "../../components/public-footer";
 
 const CAPABILITIES = [
   {
@@ -201,7 +200,6 @@ export default function AboutPage() {
       </main>
 
       <PublicFooter />
-      <AshnaAIWidget />
     </div>
   );
 }
