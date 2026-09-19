@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 
 const SESSION_COOKIE = "lims_session";
-const PUBLIC_PATHS = ["/login", "/about", "/contact"];
+const PUBLIC_PATHS = ["/login", "/about", "/contact", "/download-report"];
 
 function isPublicPath(pathname: string) {
   // Public marketing pages: landing, about, contact.

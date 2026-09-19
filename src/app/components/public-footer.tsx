@@ -34,6 +34,9 @@ export function PublicFooter() {
             <Link href="/contact" className="w-fit text-slate-600 transition hover:text-teal-700">
               Contact
             </Link>
+            <Link href="/download-report" className="w-fit text-slate-600 transition hover:text-teal-700">
+              Download Report
+            </Link>
             <Link
               href="/login"
               className="flex w-fit items-center gap-1.5 text-slate-600 transition hover:text-teal-700"
