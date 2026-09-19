@@ -89,7 +89,7 @@ export function LimsChatWidget() {
   }
 
   return (
-    <div className="fixed inset-x-0 bottom-0 z-50 pointer-events-none sm:inset-auto sm:bottom-5 sm:right-5">
+    <div className="fixed inset-x-0 bottom-0 z-50 pointer-events-none pb-[env(safe-area-inset-bottom)] sm:inset-auto sm:bottom-5 sm:right-5 sm:pb-0">
       {open && (
         <section
           aria-label="LIMS Assistant chat"
