@@ -236,19 +236,81 @@ flowchart TB
 
 ## 📸 Screenshots
 
-> **Note:** Real UI screenshots have not been added to this repository yet. The table below lists **placeholders** — see [docs/screenshots/README.md](docs/screenshots/README.md) for capture instructions, then replace this section with actual images.
+<table>
+<tr>
+<td width="50%" align="center" valign="top">
 
-| View | Preview |
-|---|---|
-| Public landing page | <i>placeholder — add `docs/screenshots/home.png`</i> |
-| Admin / Lab login | <i>placeholder — add `docs/screenshots/login.png`</i> |
-| Lab dashboard | <i>placeholder — add `docs/screenshots/dashboard.png`</i> |
-| Patient registration | <i>placeholder — add `docs/screenshots/reception.png`</i> |
-| Report creation | <i>placeholder — add `docs/screenshots/report-new.png`</i> |
-| Generated PDF report | <i>placeholder — add `docs/screenshots/report-pdf.png`</i> |
-| Public report download | <i>placeholder — add `docs/screenshots/download-report.png`</i> |
-| LIMS Assistant chatbot | <i>placeholder — add `docs/screenshots/chatbot.png`</i> |
-| PWA install prompt | <i>placeholder — add `docs/screenshots/pwa-install.png`</i> |
+**🏠 Public landing page**
+
+<img src="docs/screenshots/home.png" alt="Public landing page" width="100%" />
+
+</td>
+<td width="50%" align="center" valign="top">
+
+**🔐 Admin / Lab login**
+
+<img src="docs/screenshots/login.png" alt="Admin and Lab login mode selector" width="100%" />
+
+</td>
+</tr>
+<tr>
+<td width="50%" align="center" valign="top">
+
+**📊 Lab dashboard**
+
+<img src="docs/screenshots/dashboard.png" alt="Lab dashboard with stat cards" width="100%" />
+
+</td>
+<td width="50%" align="center" valign="top">
+
+**🧾 Patient registration**
+
+<img src="docs/screenshots/reception.png" alt="Patient registration form" width="100%" />
+
+</td>
+</tr>
+<tr>
+<td width="50%" align="center" valign="top">
+
+**📝 Report creation**
+
+<img src="docs/screenshots/report-new.png" alt="Report creation workspace" width="100%" />
+
+</td>
+<td width="50%" align="center" valign="top">
+
+**📄 Generated PDF report**
+
+<img src="docs/screenshots/report-pdf.png" alt="Generated PDF report" width="100%" />
+
+</td>
+</tr>
+<tr>
+<td width="50%" align="center" valign="top">
+
+**📱 Public report download**
+
+<img src="docs/screenshots/download-report.png" alt="Public report download page" width="100%" />
+
+</td>
+<td width="50%" align="center" valign="top">
+
+**💬 LIMS Assistant chatbot**
+
+<img src="docs/screenshots/chatbot.png" alt="LIMS Assistant chat widget" width="100%" />
+
+</td>
+</tr>
+<tr>
+<td width="50%" align="center" valign="top" colspan="2">
+
+**📥 PWA install prompt**
+
+<img src="docs/screenshots/pwa-install.png" alt="PWA install prompt" width="50%" />
+
+</td>
+</tr>
+</table>
 
 ---
 
@@ -456,7 +518,7 @@ lims/
 - [x] Public chatbot assistant
 - [x] Secure public report download (phone + DOB, HMAC tokens)
 - [x] Installable PWA with offline support
-- [ ] Real UI screenshots in README
+- [x] Real UI screenshots in README
 - [ ] Lab-side report finalization workflow enhancements
 - [ ] Email/SMS notification when a report is completed
 - [ ] Role-based access control within a lab (technician vs. admin)
