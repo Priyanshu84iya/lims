@@ -6,7 +6,7 @@
 
 **Laboratory Information Management System**
 
-<img src="https://readme-typing-svg.demolab.com?font=Geist&weight=600&size=22&pause=1000&color=0F766E&center=true&vCenter=true&repeat=false&width=640&height=50&lines=From+patient+registration+to+signed%2C+printable+pathology+reports." alt="Typing animation" />
+<!-- <img src="https://readme-typing-svg.demolab.com?font=Geist&weight=600&size=22&pause=1000&color=0F766E&center=true&vCenter=true&repeat=false&width=640&height=50&lines=From+patient+registration+to+signed%2C+printable+pathology+reports." alt="Typing animation" /> -->
 
 Modern clinical pathology workflow — register patients, manage test catalogs, record results, and generate professional PDF reports with secure multi-laboratory support and complete data isolation.
 
