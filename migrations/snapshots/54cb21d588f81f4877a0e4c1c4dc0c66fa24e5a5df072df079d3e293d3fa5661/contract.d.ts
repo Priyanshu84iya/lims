@@ -33,7 +33,7 @@ import type {
 } from '@prisma/orm-postgres/contract/types';
 
 export type StorageHash =
-  StorageHashBase<'58a920663834a795baee407d418746e5672dfcb6f1b0d3996a08b80cabfe733e'>;
+  StorageHashBase<'54cb21d588f81f4877a0e4c1c4dc0c66fa24e5a5df072df079d3e293d3fa5661'>;
 export type ExecutionHash =
   ExecutionHashBase<'08b7665496785821438d1fe391aa5e7a99efeeb0ae188f156929ba055cc5f4ab'>;
 export type ProfileHash =
@@ -274,7 +274,6 @@ export type FieldOutputTypes = {
       readonly patientId: CodecTypes['pg/int4@1']['output'];
       readonly testOrderId: CodecTypes['pg/int4@1']['output'];
       readonly subtotal: CodecTypes['pg/numeric@1']['output'];
-      readonly discountPercent: CodecTypes['pg/numeric@1']['output'];
       readonly discount: CodecTypes['pg/numeric@1']['output'];
       readonly tax: CodecTypes['pg/numeric@1']['output'];
       readonly grandTotal: CodecTypes['pg/numeric@1']['output'];
@@ -475,7 +474,6 @@ export type FieldInputTypes = {
       readonly patientId: CodecTypes['pg/int4@1']['input'];
       readonly testOrderId: CodecTypes['pg/int4@1']['input'];
       readonly subtotal: CodecTypes['pg/numeric@1']['input'];
-      readonly discountPercent: CodecTypes['pg/numeric@1']['input'];
       readonly discount: CodecTypes['pg/numeric@1']['input'];
       readonly tax: CodecTypes['pg/numeric@1']['input'];
       readonly grandTotal: CodecTypes['pg/numeric@1']['input'];
@@ -673,7 +671,6 @@ export type StorageColumnTypes = {
       readonly amountPaid: CodecTypes['pg/numeric@1']['output'];
       readonly createdAt: CodecTypes['pg/timestamptz-string@1']['output'];
       readonly discount: CodecTypes['pg/numeric@1']['output'];
-      readonly discountPercent: CodecTypes['pg/numeric@1']['output'];
       readonly generatedBy: CodecTypes['pg/text@1']['output'];
       readonly grandTotal: CodecTypes['pg/numeric@1']['output'];
       readonly id: CodecTypes['pg/int4@1']['output'];
@@ -874,7 +871,6 @@ export type StorageColumnInputTypes = {
       readonly amountPaid: CodecTypes['pg/numeric@1']['input'];
       readonly createdAt: CodecTypes['pg/timestamptz-string@1']['input'];
       readonly discount: CodecTypes['pg/numeric@1']['input'];
-      readonly discountPercent: CodecTypes['pg/numeric@1']['input'];
       readonly generatedBy: CodecTypes['pg/text@1']['input'];
       readonly grandTotal: CodecTypes['pg/numeric@1']['input'];
       readonly id: CodecTypes['pg/int4@1']['input'];
@@ -1259,15 +1255,6 @@ type ContractBase = Omit<
                   readonly nativeType: 'numeric';
                   readonly codecId: 'pg/numeric@1';
                   readonly nullable: false;
-                };
-                readonly discountPercent: {
-                  readonly nativeType: 'numeric';
-                  readonly codecId: 'pg/numeric@1';
-                  readonly nullable: false;
-                  readonly default: {
-                    readonly kind: 'literal';
-                    readonly value: DefaultLiteralValue<'pg/numeric@1', '0'>;
-                  };
                 };
                 readonly discount: {
                   readonly nativeType: 'numeric';
@@ -2722,10 +2709,6 @@ type ContractBase = Omit<
                 readonly nullable: false;
                 readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/numeric@1' };
               };
-              readonly discountPercent: {
-                readonly nullable: false;
-                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/numeric@1' };
-              };
               readonly discount: {
                 readonly nullable: false;
                 readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/numeric@1' };
@@ -2845,7 +2828,6 @@ type ContractBase = Omit<
                 readonly patientId: { readonly column: 'patientId' };
                 readonly testOrderId: { readonly column: 'testOrderId' };
                 readonly subtotal: { readonly column: 'subtotal' };
-                readonly discountPercent: { readonly column: 'discountPercent' };
                 readonly discount: { readonly column: 'discount' };
                 readonly tax: { readonly column: 'tax' };
                 readonly grandTotal: { readonly column: 'grandTotal' };

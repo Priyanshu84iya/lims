@@ -3,8 +3,8 @@
 import { useEffect, useMemo, useState } from "react";
 import Link from "next/link";
 import {
-  Activity,
   ArrowRight,
+  ClipboardList,
   FileText,
   FlaskConical,
   Plus,
@@ -29,6 +29,15 @@ type Report = {
 
 type Patient = { id: number };
 
+type TestOrder = {
+  id: number;
+  orderNumber: string;
+  status: string;
+  createdAt: string;
+  patient?: { fullName: string; patientCode: string } | null;
+  tests?: { testName: string }[];
+};
+
 function formatDate(value: string | null) {
   return value
     ? new Intl.DateTimeFormat("en", { dateStyle: "medium" }).format(new Date(value))
@@ -38,16 +47,19 @@ function formatDate(value: string | null) {
 export default function DashboardPage() {
   const [reports, setReports] = useState<Report[]>([]);
   const [patients, setPatients] = useState<Patient[]>([]);
+  const [orders, setOrders] = useState<TestOrder[]>([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     Promise.all([
       fetch("/api/reports").then((response) => response.json()),
       fetch("/api/patients").then((response) => response.json()),
+      fetch("/api/test-orders").then((response) => response.json()),
     ])
-      .then(([reportsData, patientsData]) => {
+      .then(([reportsData, patientsData, ordersData]) => {
         setReports(reportsData.reports || []);
         setPatients(patientsData.patients || []);
+        setOrders(ordersData.orders || []);
       })
       .catch(() => undefined)
       .finally(() => setLoading(false));
@@ -64,14 +76,25 @@ export default function DashboardPage() {
     [reports]
   );
 
+  const recentOrders = useMemo(
+    () =>
+      [...orders]
+        .sort(
+          (left, right) =>
+            new Date(right.createdAt).getTime() - new Date(left.createdAt).getTime()
+        )
+        .slice(0, 6),
+    [orders]
+  );
+
   const stats = [
     { label: "Total reports", value: reports.length, icon: FileText },
     { label: "Registered patients", value: patients.length, icon: Users },
     { label: "Tests in catalog", value: LABORATORY_TESTS.length, icon: FlaskConical },
     {
-      label: "Completed reports",
-      value: reports.filter((report) => report.status !== "DRAFT").length,
-      icon: Activity,
+      label: "Open test orders",
+      value: orders.filter((order) => order.status !== "REPORT_GENERATED").length,
+      icon: ClipboardList,
     },
   ];
 
@@ -115,6 +138,56 @@ export default function DashboardPage() {
               </Card>
             ))}
           </div>
+
+          <Card className="mt-6">
+            <CardHeader className="flex-row items-center justify-between">
+              <CardTitle>Recent test orders</CardTitle>
+              <Button variant="ghost" size="sm" asChild>
+                <Link href="/reports/new">
+                  Create report <ArrowRight />
+                </Link>
+              </Button>
+            </CardHeader>
+            <CardContent>
+              {loading ? (
+                <div className="space-y-3">
+                  {[0, 1, 2].map((item) => (
+                    <Skeleton key={item} className="h-14 w-full" />
+                  ))}
+                </div>
+              ) : recentOrders.length === 0 ? (
+                <p className="py-8 text-center text-sm text-slate-500">
+                  No test orders yet. Register a patient and book investigations at Reception.
+                </p>
+              ) : (
+                <div className="divide-y divide-slate-100">
+                  {recentOrders.map((order) => (
+                    <Link
+                      key={order.id}
+                      href="/reports/new"
+                      className="flex items-center justify-between gap-4 py-3.5 transition hover:bg-slate-50"
+                    >
+                      <div>
+                        <p className="font-semibold text-teal-800">{order.orderNumber}</p>
+                        <p className="mt-0.5 text-sm text-slate-500">
+                          {order.patient?.fullName || "Unknown patient"} ·{" "}
+                          {order.tests?.map((test) => test.testName).join(", ") || "No tests"}
+                        </p>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <span className="hidden text-sm text-slate-400 sm:block">
+                          {formatDate(order.createdAt)}
+                        </span>
+                        <Badge variant={order.status === "REPORT_GENERATED" ? "success" : "secondary"}>
+                          {order.status === "REPORT_GENERATED" ? "Report generated" : order.status.replaceAll("_", " ")}
+                        </Badge>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </CardContent>
+          </Card>
 
           <Card className="mt-6">
             <CardHeader className="flex-row items-center justify-between">

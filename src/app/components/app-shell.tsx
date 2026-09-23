@@ -10,6 +10,7 @@ import {
   LayoutDashboard,
   LogOut,
   Menu,
+  Receipt,
   Settings,
   UserPlus,
   Users,
@@ -22,8 +23,9 @@ const navigation = [
   { href: "/reports/new", label: "Create report", icon: FileText },
   { href: "/reports", label: "Reports", icon: Activity },
   { href: "/patients", label: "Patients", icon: Users },
+  { href: "/invoices", label: "Invoices", icon: Receipt },
   { href: "/tests", label: "Test catalog", icon: FlaskConical },
-  { href: "/catalog", label: "Catalog settings", icon: Settings },
+  { href: "/catalog", label: "Catalog Pricing", icon: Settings },
 ];
 
 type SessionUser = { role: "ADMIN" | "LAB"; name: string; email: string };

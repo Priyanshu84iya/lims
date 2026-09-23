@@ -33,9 +33,9 @@ import type {
 } from '@prisma/orm-postgres/contract/types';
 
 export type StorageHash =
-  StorageHashBase<'58a920663834a795baee407d418746e5672dfcb6f1b0d3996a08b80cabfe733e'>;
+  StorageHashBase<'0fff5792c27ab40f6f13eb19f46a92aa337bde28e67fba19bce51a93c25984ba'>;
 export type ExecutionHash =
-  ExecutionHashBase<'08b7665496785821438d1fe391aa5e7a99efeeb0ae188f156929ba055cc5f4ab'>;
+  ExecutionHashBase<'413c332294256c9ef0e895cf2265b1ac36a252050bff9599cd670f4da504f927'>;
 export type ProfileHash =
   ProfileHashBase<'3916f444a8a17ad749191acf9e08dad97d1a327b88c2f1d45d12f240296aa8b2'>;
 
@@ -267,46 +267,6 @@ export type FieldOutputTypes = {
       readonly createdAt: CodecTypes['pg/timestamptz-string@1']['output'];
       readonly updatedAt: CodecTypes['pg/timestamptz-string@1']['output'];
     };
-    readonly Invoice: {
-      readonly id: CodecTypes['pg/int4@1']['output'];
-      readonly invoiceNumber: CodecTypes['pg/text@1']['output'];
-      readonly labId: CodecTypes['pg/int4@1']['output'];
-      readonly patientId: CodecTypes['pg/int4@1']['output'];
-      readonly testOrderId: CodecTypes['pg/int4@1']['output'];
-      readonly subtotal: CodecTypes['pg/numeric@1']['output'];
-      readonly discountPercent: CodecTypes['pg/numeric@1']['output'];
-      readonly discount: CodecTypes['pg/numeric@1']['output'];
-      readonly tax: CodecTypes['pg/numeric@1']['output'];
-      readonly grandTotal: CodecTypes['pg/numeric@1']['output'];
-      readonly amountPaid: CodecTypes['pg/numeric@1']['output'];
-      readonly paymentMode: CodecTypes['pg/text@1']['output'] | null;
-      readonly paymentStatus: CodecTypes['pg/text@1']['output'];
-      readonly generatedBy: CodecTypes['pg/text@1']['output'];
-      readonly sampleType: CodecTypes['pg/text@1']['output'] | null;
-      readonly terms: CodecTypes['pg/text@1']['output'] | null;
-      readonly status: CodecTypes['pg/text@1']['output'];
-      readonly createdAt: CodecTypes['pg/timestamptz-string@1']['output'];
-      readonly updatedAt: CodecTypes['pg/timestamptz-string@1']['output'];
-    };
-    readonly InvoiceItem: {
-      readonly id: CodecTypes['pg/int4@1']['output'];
-      readonly invoiceId: CodecTypes['pg/int4@1']['output'];
-      readonly testCode: CodecTypes['pg/text@1']['output'];
-      readonly testName: CodecTypes['pg/text@1']['output'];
-      readonly quantity: CodecTypes['pg/int4@1']['output'];
-      readonly unitPrice: CodecTypes['pg/numeric@1']['output'];
-      readonly amount: CodecTypes['pg/numeric@1']['output'];
-      readonly createdAt: CodecTypes['pg/timestamptz-string@1']['output'];
-    };
-    readonly InvoicePayment: {
-      readonly id: CodecTypes['pg/int4@1']['output'];
-      readonly invoiceId: CodecTypes['pg/int4@1']['output'];
-      readonly amount: CodecTypes['pg/numeric@1']['output'];
-      readonly mode: CodecTypes['pg/text@1']['output'];
-      readonly transactionId: CodecTypes['pg/text@1']['output'] | null;
-      readonly receivedBy: CodecTypes['pg/text@1']['output'];
-      readonly createdAt: CodecTypes['pg/timestamptz-string@1']['output'];
-    };
     readonly Lab: {
       readonly id: CodecTypes['pg/int4@1']['output'];
       readonly name: CodecTypes['pg/text@1']['output'];
@@ -327,14 +287,6 @@ export type FieldOutputTypes = {
       readonly directorQualification: CodecTypes['pg/text@1']['output'] | null;
       readonly logoUrl: CodecTypes['pg/text@1']['output'] | null;
       readonly signatureUrl: CodecTypes['pg/text@1']['output'] | null;
-      readonly createdAt: CodecTypes['pg/timestamptz-string@1']['output'];
-      readonly updatedAt: CodecTypes['pg/timestamptz-string@1']['output'];
-    };
-    readonly LabTestPrice: {
-      readonly id: CodecTypes['pg/int4@1']['output'];
-      readonly labId: CodecTypes['pg/int4@1']['output'];
-      readonly testCode: CodecTypes['pg/text@1']['output'];
-      readonly price: CodecTypes['pg/numeric@1']['output'];
       readonly createdAt: CodecTypes['pg/timestamptz-string@1']['output'];
       readonly updatedAt: CodecTypes['pg/timestamptz-string@1']['output'];
     };
@@ -407,7 +359,6 @@ export type FieldOutputTypes = {
       readonly labId: CodecTypes['pg/int4@1']['output'];
       readonly referredBy: CodecTypes['pg/text@1']['output'] | null;
       readonly status: CodecTypes['pg/text@1']['output'];
-      readonly sampleCollectedAt: CodecTypes['pg/timestamptz-string@1']['output'] | null;
       readonly reportId: CodecTypes['pg/int4@1']['output'] | null;
       readonly createdAt: CodecTypes['pg/timestamptz-string@1']['output'];
       readonly updatedAt: CodecTypes['pg/timestamptz-string@1']['output'];
@@ -468,46 +419,6 @@ export type FieldInputTypes = {
       readonly createdAt: CodecTypes['pg/timestamptz-string@1']['input'];
       readonly updatedAt: CodecTypes['pg/timestamptz-string@1']['input'];
     };
-    readonly Invoice: {
-      readonly id: CodecTypes['pg/int4@1']['input'];
-      readonly invoiceNumber: CodecTypes['pg/text@1']['input'];
-      readonly labId: CodecTypes['pg/int4@1']['input'];
-      readonly patientId: CodecTypes['pg/int4@1']['input'];
-      readonly testOrderId: CodecTypes['pg/int4@1']['input'];
-      readonly subtotal: CodecTypes['pg/numeric@1']['input'];
-      readonly discountPercent: CodecTypes['pg/numeric@1']['input'];
-      readonly discount: CodecTypes['pg/numeric@1']['input'];
-      readonly tax: CodecTypes['pg/numeric@1']['input'];
-      readonly grandTotal: CodecTypes['pg/numeric@1']['input'];
-      readonly amountPaid: CodecTypes['pg/numeric@1']['input'];
-      readonly paymentMode: CodecTypes['pg/text@1']['input'] | null;
-      readonly paymentStatus: CodecTypes['pg/text@1']['input'];
-      readonly generatedBy: CodecTypes['pg/text@1']['input'];
-      readonly sampleType: CodecTypes['pg/text@1']['input'] | null;
-      readonly terms: CodecTypes['pg/text@1']['input'] | null;
-      readonly status: CodecTypes['pg/text@1']['input'];
-      readonly createdAt: CodecTypes['pg/timestamptz-string@1']['input'];
-      readonly updatedAt: CodecTypes['pg/timestamptz-string@1']['input'];
-    };
-    readonly InvoiceItem: {
-      readonly id: CodecTypes['pg/int4@1']['input'];
-      readonly invoiceId: CodecTypes['pg/int4@1']['input'];
-      readonly testCode: CodecTypes['pg/text@1']['input'];
-      readonly testName: CodecTypes['pg/text@1']['input'];
-      readonly quantity: CodecTypes['pg/int4@1']['input'];
-      readonly unitPrice: CodecTypes['pg/numeric@1']['input'];
-      readonly amount: CodecTypes['pg/numeric@1']['input'];
-      readonly createdAt: CodecTypes['pg/timestamptz-string@1']['input'];
-    };
-    readonly InvoicePayment: {
-      readonly id: CodecTypes['pg/int4@1']['input'];
-      readonly invoiceId: CodecTypes['pg/int4@1']['input'];
-      readonly amount: CodecTypes['pg/numeric@1']['input'];
-      readonly mode: CodecTypes['pg/text@1']['input'];
-      readonly transactionId: CodecTypes['pg/text@1']['input'] | null;
-      readonly receivedBy: CodecTypes['pg/text@1']['input'];
-      readonly createdAt: CodecTypes['pg/timestamptz-string@1']['input'];
-    };
     readonly Lab: {
       readonly id: CodecTypes['pg/int4@1']['input'];
       readonly name: CodecTypes['pg/text@1']['input'];
@@ -528,14 +439,6 @@ export type FieldInputTypes = {
       readonly directorQualification: CodecTypes['pg/text@1']['input'] | null;
       readonly logoUrl: CodecTypes['pg/text@1']['input'] | null;
       readonly signatureUrl: CodecTypes['pg/text@1']['input'] | null;
-      readonly createdAt: CodecTypes['pg/timestamptz-string@1']['input'];
-      readonly updatedAt: CodecTypes['pg/timestamptz-string@1']['input'];
-    };
-    readonly LabTestPrice: {
-      readonly id: CodecTypes['pg/int4@1']['input'];
-      readonly labId: CodecTypes['pg/int4@1']['input'];
-      readonly testCode: CodecTypes['pg/text@1']['input'];
-      readonly price: CodecTypes['pg/numeric@1']['input'];
       readonly createdAt: CodecTypes['pg/timestamptz-string@1']['input'];
       readonly updatedAt: CodecTypes['pg/timestamptz-string@1']['input'];
     };
@@ -608,7 +511,6 @@ export type FieldInputTypes = {
       readonly labId: CodecTypes['pg/int4@1']['input'];
       readonly referredBy: CodecTypes['pg/text@1']['input'] | null;
       readonly status: CodecTypes['pg/text@1']['input'];
-      readonly sampleCollectedAt: CodecTypes['pg/timestamptz-string@1']['input'] | null;
       readonly reportId: CodecTypes['pg/int4@1']['input'] | null;
       readonly createdAt: CodecTypes['pg/timestamptz-string@1']['input'];
       readonly updatedAt: CodecTypes['pg/timestamptz-string@1']['input'];
@@ -669,46 +571,6 @@ export type StorageColumnTypes = {
       readonly labId: CodecTypes['pg/int4@1']['output'] | null;
       readonly updatedAt: CodecTypes['pg/timestamptz-string@1']['output'];
     };
-    readonly invoice: {
-      readonly amountPaid: CodecTypes['pg/numeric@1']['output'];
-      readonly createdAt: CodecTypes['pg/timestamptz-string@1']['output'];
-      readonly discount: CodecTypes['pg/numeric@1']['output'];
-      readonly discountPercent: CodecTypes['pg/numeric@1']['output'];
-      readonly generatedBy: CodecTypes['pg/text@1']['output'];
-      readonly grandTotal: CodecTypes['pg/numeric@1']['output'];
-      readonly id: CodecTypes['pg/int4@1']['output'];
-      readonly invoiceNumber: CodecTypes['pg/text@1']['output'];
-      readonly labId: CodecTypes['pg/int4@1']['output'];
-      readonly patientId: CodecTypes['pg/int4@1']['output'];
-      readonly paymentMode: CodecTypes['pg/text@1']['output'] | null;
-      readonly paymentStatus: CodecTypes['pg/text@1']['output'];
-      readonly sampleType: CodecTypes['pg/text@1']['output'] | null;
-      readonly status: CodecTypes['pg/text@1']['output'];
-      readonly subtotal: CodecTypes['pg/numeric@1']['output'];
-      readonly tax: CodecTypes['pg/numeric@1']['output'];
-      readonly terms: CodecTypes['pg/text@1']['output'] | null;
-      readonly testOrderId: CodecTypes['pg/int4@1']['output'];
-      readonly updatedAt: CodecTypes['pg/timestamptz-string@1']['output'];
-    };
-    readonly invoiceItem: {
-      readonly amount: CodecTypes['pg/numeric@1']['output'];
-      readonly createdAt: CodecTypes['pg/timestamptz-string@1']['output'];
-      readonly id: CodecTypes['pg/int4@1']['output'];
-      readonly invoiceId: CodecTypes['pg/int4@1']['output'];
-      readonly quantity: CodecTypes['pg/int4@1']['output'];
-      readonly testCode: CodecTypes['pg/text@1']['output'];
-      readonly testName: CodecTypes['pg/text@1']['output'];
-      readonly unitPrice: CodecTypes['pg/numeric@1']['output'];
-    };
-    readonly invoicePayment: {
-      readonly amount: CodecTypes['pg/numeric@1']['output'];
-      readonly createdAt: CodecTypes['pg/timestamptz-string@1']['output'];
-      readonly id: CodecTypes['pg/int4@1']['output'];
-      readonly invoiceId: CodecTypes['pg/int4@1']['output'];
-      readonly mode: CodecTypes['pg/text@1']['output'];
-      readonly receivedBy: CodecTypes['pg/text@1']['output'];
-      readonly transactionId: CodecTypes['pg/text@1']['output'] | null;
-    };
     readonly lab: {
       readonly address: CodecTypes['pg/text@1']['output'] | null;
       readonly city: CodecTypes['pg/text@1']['output'] | null;
@@ -731,14 +593,6 @@ export type StorageColumnTypes = {
       readonly state: CodecTypes['pg/text@1']['output'] | null;
       readonly updatedAt: CodecTypes['pg/timestamptz-string@1']['output'];
       readonly website: CodecTypes['pg/text@1']['output'] | null;
-    };
-    readonly labTestPrice: {
-      readonly createdAt: CodecTypes['pg/timestamptz-string@1']['output'];
-      readonly id: CodecTypes['pg/int4@1']['output'];
-      readonly labId: CodecTypes['pg/int4@1']['output'];
-      readonly price: CodecTypes['pg/numeric@1']['output'];
-      readonly testCode: CodecTypes['pg/text@1']['output'];
-      readonly updatedAt: CodecTypes['pg/timestamptz-string@1']['output'];
     };
     readonly patient: {
       readonly address: CodecTypes['pg/text@1']['output'] | null;
@@ -810,7 +664,6 @@ export type StorageColumnTypes = {
       readonly patientId: CodecTypes['pg/int4@1']['output'];
       readonly referredBy: CodecTypes['pg/text@1']['output'] | null;
       readonly reportId: CodecTypes['pg/int4@1']['output'] | null;
-      readonly sampleCollectedAt: CodecTypes['pg/timestamptz-string@1']['output'] | null;
       readonly status: CodecTypes['pg/text@1']['output'];
       readonly updatedAt: CodecTypes['pg/timestamptz-string@1']['output'];
     };
@@ -870,46 +723,6 @@ export type StorageColumnInputTypes = {
       readonly labId: CodecTypes['pg/int4@1']['input'] | null;
       readonly updatedAt: CodecTypes['pg/timestamptz-string@1']['input'];
     };
-    readonly invoice: {
-      readonly amountPaid: CodecTypes['pg/numeric@1']['input'];
-      readonly createdAt: CodecTypes['pg/timestamptz-string@1']['input'];
-      readonly discount: CodecTypes['pg/numeric@1']['input'];
-      readonly discountPercent: CodecTypes['pg/numeric@1']['input'];
-      readonly generatedBy: CodecTypes['pg/text@1']['input'];
-      readonly grandTotal: CodecTypes['pg/numeric@1']['input'];
-      readonly id: CodecTypes['pg/int4@1']['input'];
-      readonly invoiceNumber: CodecTypes['pg/text@1']['input'];
-      readonly labId: CodecTypes['pg/int4@1']['input'];
-      readonly patientId: CodecTypes['pg/int4@1']['input'];
-      readonly paymentMode: CodecTypes['pg/text@1']['input'] | null;
-      readonly paymentStatus: CodecTypes['pg/text@1']['input'];
-      readonly sampleType: CodecTypes['pg/text@1']['input'] | null;
-      readonly status: CodecTypes['pg/text@1']['input'];
-      readonly subtotal: CodecTypes['pg/numeric@1']['input'];
-      readonly tax: CodecTypes['pg/numeric@1']['input'];
-      readonly terms: CodecTypes['pg/text@1']['input'] | null;
-      readonly testOrderId: CodecTypes['pg/int4@1']['input'];
-      readonly updatedAt: CodecTypes['pg/timestamptz-string@1']['input'];
-    };
-    readonly invoiceItem: {
-      readonly amount: CodecTypes['pg/numeric@1']['input'];
-      readonly createdAt: CodecTypes['pg/timestamptz-string@1']['input'];
-      readonly id: CodecTypes['pg/int4@1']['input'];
-      readonly invoiceId: CodecTypes['pg/int4@1']['input'];
-      readonly quantity: CodecTypes['pg/int4@1']['input'];
-      readonly testCode: CodecTypes['pg/text@1']['input'];
-      readonly testName: CodecTypes['pg/text@1']['input'];
-      readonly unitPrice: CodecTypes['pg/numeric@1']['input'];
-    };
-    readonly invoicePayment: {
-      readonly amount: CodecTypes['pg/numeric@1']['input'];
-      readonly createdAt: CodecTypes['pg/timestamptz-string@1']['input'];
-      readonly id: CodecTypes['pg/int4@1']['input'];
-      readonly invoiceId: CodecTypes['pg/int4@1']['input'];
-      readonly mode: CodecTypes['pg/text@1']['input'];
-      readonly receivedBy: CodecTypes['pg/text@1']['input'];
-      readonly transactionId: CodecTypes['pg/text@1']['input'] | null;
-    };
     readonly lab: {
       readonly address: CodecTypes['pg/text@1']['input'] | null;
       readonly city: CodecTypes['pg/text@1']['input'] | null;
@@ -932,14 +745,6 @@ export type StorageColumnInputTypes = {
       readonly state: CodecTypes['pg/text@1']['input'] | null;
       readonly updatedAt: CodecTypes['pg/timestamptz-string@1']['input'];
       readonly website: CodecTypes['pg/text@1']['input'] | null;
-    };
-    readonly labTestPrice: {
-      readonly createdAt: CodecTypes['pg/timestamptz-string@1']['input'];
-      readonly id: CodecTypes['pg/int4@1']['input'];
-      readonly labId: CodecTypes['pg/int4@1']['input'];
-      readonly price: CodecTypes['pg/numeric@1']['input'];
-      readonly testCode: CodecTypes['pg/text@1']['input'];
-      readonly updatedAt: CodecTypes['pg/timestamptz-string@1']['input'];
     };
     readonly patient: {
       readonly address: CodecTypes['pg/text@1']['input'] | null;
@@ -1011,7 +816,6 @@ export type StorageColumnInputTypes = {
       readonly patientId: CodecTypes['pg/int4@1']['input'];
       readonly referredBy: CodecTypes['pg/text@1']['input'] | null;
       readonly reportId: CodecTypes['pg/int4@1']['input'] | null;
-      readonly sampleCollectedAt: CodecTypes['pg/timestamptz-string@1']['input'] | null;
       readonly status: CodecTypes['pg/text@1']['input'];
       readonly updatedAt: CodecTypes['pg/timestamptz-string@1']['input'];
     };
@@ -1224,336 +1028,6 @@ type ContractBase = Omit<
                 },
               ];
             };
-            readonly invoice: {
-              columns: {
-                readonly id: {
-                  readonly nativeType: 'int4';
-                  readonly codecId: 'pg/int4@1';
-                  readonly nullable: false;
-                  readonly default: {
-                    readonly kind: 'function';
-                    readonly expression: 'autoincrement()';
-                  };
-                };
-                readonly invoiceNumber: {
-                  readonly nativeType: 'text';
-                  readonly codecId: 'pg/text@1';
-                  readonly nullable: false;
-                };
-                readonly labId: {
-                  readonly nativeType: 'int4';
-                  readonly codecId: 'pg/int4@1';
-                  readonly nullable: false;
-                };
-                readonly patientId: {
-                  readonly nativeType: 'int4';
-                  readonly codecId: 'pg/int4@1';
-                  readonly nullable: false;
-                };
-                readonly testOrderId: {
-                  readonly nativeType: 'int4';
-                  readonly codecId: 'pg/int4@1';
-                  readonly nullable: false;
-                };
-                readonly subtotal: {
-                  readonly nativeType: 'numeric';
-                  readonly codecId: 'pg/numeric@1';
-                  readonly nullable: false;
-                };
-                readonly discountPercent: {
-                  readonly nativeType: 'numeric';
-                  readonly codecId: 'pg/numeric@1';
-                  readonly nullable: false;
-                  readonly default: {
-                    readonly kind: 'literal';
-                    readonly value: DefaultLiteralValue<'pg/numeric@1', '0'>;
-                  };
-                };
-                readonly discount: {
-                  readonly nativeType: 'numeric';
-                  readonly codecId: 'pg/numeric@1';
-                  readonly nullable: false;
-                  readonly default: {
-                    readonly kind: 'literal';
-                    readonly value: DefaultLiteralValue<'pg/numeric@1', '0'>;
-                  };
-                };
-                readonly tax: {
-                  readonly nativeType: 'numeric';
-                  readonly codecId: 'pg/numeric@1';
-                  readonly nullable: false;
-                  readonly default: {
-                    readonly kind: 'literal';
-                    readonly value: DefaultLiteralValue<'pg/numeric@1', '0'>;
-                  };
-                };
-                readonly grandTotal: {
-                  readonly nativeType: 'numeric';
-                  readonly codecId: 'pg/numeric@1';
-                  readonly nullable: false;
-                };
-                readonly amountPaid: {
-                  readonly nativeType: 'numeric';
-                  readonly codecId: 'pg/numeric@1';
-                  readonly nullable: false;
-                  readonly default: {
-                    readonly kind: 'literal';
-                    readonly value: DefaultLiteralValue<'pg/numeric@1', '0'>;
-                  };
-                };
-                readonly paymentMode: {
-                  readonly nativeType: 'text';
-                  readonly codecId: 'pg/text@1';
-                  readonly nullable: true;
-                };
-                readonly paymentStatus: {
-                  readonly nativeType: 'text';
-                  readonly codecId: 'pg/text@1';
-                  readonly nullable: false;
-                  readonly default: {
-                    readonly kind: 'literal';
-                    readonly value: DefaultLiteralValue<'pg/text@1', 'UNPAID'>;
-                  };
-                };
-                readonly generatedBy: {
-                  readonly nativeType: 'text';
-                  readonly codecId: 'pg/text@1';
-                  readonly nullable: false;
-                };
-                readonly sampleType: {
-                  readonly nativeType: 'text';
-                  readonly codecId: 'pg/text@1';
-                  readonly nullable: true;
-                };
-                readonly terms: {
-                  readonly nativeType: 'text';
-                  readonly codecId: 'pg/text@1';
-                  readonly nullable: true;
-                };
-                readonly status: {
-                  readonly nativeType: 'text';
-                  readonly codecId: 'pg/text@1';
-                  readonly nullable: false;
-                  readonly default: {
-                    readonly kind: 'literal';
-                    readonly value: DefaultLiteralValue<'pg/text@1', 'ACTIVE'>;
-                  };
-                };
-                readonly createdAt: {
-                  readonly nativeType: 'timestamptz';
-                  readonly codecId: 'pg/timestamptz-string@1';
-                  readonly nullable: false;
-                  readonly default: { readonly kind: 'function'; readonly expression: 'now()' };
-                };
-                readonly updatedAt: {
-                  readonly nativeType: 'timestamptz';
-                  readonly codecId: 'pg/timestamptz-string@1';
-                  readonly nullable: false;
-                };
-              };
-              primaryKey: { readonly columns: readonly ['id'] };
-              uniques: readonly [
-                { readonly columns: readonly ['invoiceNumber'] },
-                { readonly columns: readonly ['testOrderId'] },
-              ];
-              indexes: readonly [
-                {
-                  readonly name: 'invoice_labId_idx_0e579cfa';
-                  readonly prefix: 'invoice_labId_idx';
-                  readonly columns: readonly ['labId'];
-                  readonly unique: false;
-                },
-                {
-                  readonly name: 'invoice_patientId_idx_e5f07e88';
-                  readonly prefix: 'invoice_patientId_idx';
-                  readonly columns: readonly ['patientId'];
-                  readonly unique: false;
-                },
-              ];
-              foreignKeys: readonly [
-                {
-                  readonly source: {
-                    readonly namespaceId: 'public' & NamespaceId;
-                    readonly tableName: 'invoice';
-                    readonly columns: readonly ['labId'];
-                  };
-                  readonly target: {
-                    readonly namespaceId: 'public' & NamespaceId;
-                    readonly tableName: 'lab';
-                    readonly columns: readonly ['id'];
-                  };
-                },
-                {
-                  readonly source: {
-                    readonly namespaceId: 'public' & NamespaceId;
-                    readonly tableName: 'invoice';
-                    readonly columns: readonly ['patientId'];
-                  };
-                  readonly target: {
-                    readonly namespaceId: 'public' & NamespaceId;
-                    readonly tableName: 'patient';
-                    readonly columns: readonly ['id'];
-                  };
-                },
-                {
-                  readonly source: {
-                    readonly namespaceId: 'public' & NamespaceId;
-                    readonly tableName: 'invoice';
-                    readonly columns: readonly ['testOrderId'];
-                  };
-                  readonly target: {
-                    readonly namespaceId: 'public' & NamespaceId;
-                    readonly tableName: 'testOrder';
-                    readonly columns: readonly ['id'];
-                  };
-                },
-              ];
-            };
-            readonly invoiceItem: {
-              columns: {
-                readonly id: {
-                  readonly nativeType: 'int4';
-                  readonly codecId: 'pg/int4@1';
-                  readonly nullable: false;
-                  readonly default: {
-                    readonly kind: 'function';
-                    readonly expression: 'autoincrement()';
-                  };
-                };
-                readonly invoiceId: {
-                  readonly nativeType: 'int4';
-                  readonly codecId: 'pg/int4@1';
-                  readonly nullable: false;
-                };
-                readonly testCode: {
-                  readonly nativeType: 'text';
-                  readonly codecId: 'pg/text@1';
-                  readonly nullable: false;
-                };
-                readonly testName: {
-                  readonly nativeType: 'text';
-                  readonly codecId: 'pg/text@1';
-                  readonly nullable: false;
-                };
-                readonly quantity: {
-                  readonly nativeType: 'int4';
-                  readonly codecId: 'pg/int4@1';
-                  readonly nullable: false;
-                  readonly default: {
-                    readonly kind: 'literal';
-                    readonly value: DefaultLiteralValue<'pg/int4@1', 1>;
-                  };
-                };
-                readonly unitPrice: {
-                  readonly nativeType: 'numeric';
-                  readonly codecId: 'pg/numeric@1';
-                  readonly nullable: false;
-                };
-                readonly amount: {
-                  readonly nativeType: 'numeric';
-                  readonly codecId: 'pg/numeric@1';
-                  readonly nullable: false;
-                };
-                readonly createdAt: {
-                  readonly nativeType: 'timestamptz';
-                  readonly codecId: 'pg/timestamptz-string@1';
-                  readonly nullable: false;
-                  readonly default: { readonly kind: 'function'; readonly expression: 'now()' };
-                };
-              };
-              primaryKey: { readonly columns: readonly ['id'] };
-              uniques: readonly [];
-              indexes: readonly [
-                {
-                  readonly name: 'invoiceItem_invoiceId_idx_d5c4f70e';
-                  readonly prefix: 'invoiceItem_invoiceId_idx';
-                  readonly columns: readonly ['invoiceId'];
-                  readonly unique: false;
-                },
-              ];
-              foreignKeys: readonly [
-                {
-                  readonly source: {
-                    readonly namespaceId: 'public' & NamespaceId;
-                    readonly tableName: 'invoiceItem';
-                    readonly columns: readonly ['invoiceId'];
-                  };
-                  readonly target: {
-                    readonly namespaceId: 'public' & NamespaceId;
-                    readonly tableName: 'invoice';
-                    readonly columns: readonly ['id'];
-                  };
-                },
-              ];
-            };
-            readonly invoicePayment: {
-              columns: {
-                readonly id: {
-                  readonly nativeType: 'int4';
-                  readonly codecId: 'pg/int4@1';
-                  readonly nullable: false;
-                  readonly default: {
-                    readonly kind: 'function';
-                    readonly expression: 'autoincrement()';
-                  };
-                };
-                readonly invoiceId: {
-                  readonly nativeType: 'int4';
-                  readonly codecId: 'pg/int4@1';
-                  readonly nullable: false;
-                };
-                readonly amount: {
-                  readonly nativeType: 'numeric';
-                  readonly codecId: 'pg/numeric@1';
-                  readonly nullable: false;
-                };
-                readonly mode: {
-                  readonly nativeType: 'text';
-                  readonly codecId: 'pg/text@1';
-                  readonly nullable: false;
-                };
-                readonly transactionId: {
-                  readonly nativeType: 'text';
-                  readonly codecId: 'pg/text@1';
-                  readonly nullable: true;
-                };
-                readonly receivedBy: {
-                  readonly nativeType: 'text';
-                  readonly codecId: 'pg/text@1';
-                  readonly nullable: false;
-                };
-                readonly createdAt: {
-                  readonly nativeType: 'timestamptz';
-                  readonly codecId: 'pg/timestamptz-string@1';
-                  readonly nullable: false;
-                  readonly default: { readonly kind: 'function'; readonly expression: 'now()' };
-                };
-              };
-              primaryKey: { readonly columns: readonly ['id'] };
-              uniques: readonly [];
-              indexes: readonly [
-                {
-                  readonly name: 'invoicePayment_invoiceId_idx_d5c4f70e';
-                  readonly prefix: 'invoicePayment_invoiceId_idx';
-                  readonly columns: readonly ['invoiceId'];
-                  readonly unique: false;
-                },
-              ];
-              foreignKeys: readonly [
-                {
-                  readonly source: {
-                    readonly namespaceId: 'public' & NamespaceId;
-                    readonly tableName: 'invoicePayment';
-                    readonly columns: readonly ['invoiceId'];
-                  };
-                  readonly target: {
-                    readonly namespaceId: 'public' & NamespaceId;
-                    readonly tableName: 'invoice';
-                    readonly columns: readonly ['id'];
-                  };
-                },
-              ];
-            };
             readonly lab: {
               columns: {
                 readonly id: {
@@ -1671,69 +1145,6 @@ type ContractBase = Omit<
               uniques: readonly [{ readonly columns: readonly ['loginEmail'] }];
               indexes: readonly [];
               foreignKeys: readonly [];
-            };
-            readonly labTestPrice: {
-              columns: {
-                readonly id: {
-                  readonly nativeType: 'int4';
-                  readonly codecId: 'pg/int4@1';
-                  readonly nullable: false;
-                  readonly default: {
-                    readonly kind: 'function';
-                    readonly expression: 'autoincrement()';
-                  };
-                };
-                readonly labId: {
-                  readonly nativeType: 'int4';
-                  readonly codecId: 'pg/int4@1';
-                  readonly nullable: false;
-                };
-                readonly testCode: {
-                  readonly nativeType: 'text';
-                  readonly codecId: 'pg/text@1';
-                  readonly nullable: false;
-                };
-                readonly price: {
-                  readonly nativeType: 'numeric';
-                  readonly codecId: 'pg/numeric@1';
-                  readonly nullable: false;
-                };
-                readonly createdAt: {
-                  readonly nativeType: 'timestamptz';
-                  readonly codecId: 'pg/timestamptz-string@1';
-                  readonly nullable: false;
-                  readonly default: { readonly kind: 'function'; readonly expression: 'now()' };
-                };
-                readonly updatedAt: {
-                  readonly nativeType: 'timestamptz';
-                  readonly codecId: 'pg/timestamptz-string@1';
-                  readonly nullable: false;
-                };
-              };
-              primaryKey: { readonly columns: readonly ['id'] };
-              uniques: readonly [{ readonly columns: readonly ['labId', 'testCode'] }];
-              indexes: readonly [
-                {
-                  readonly name: 'labTestPrice_labId_idx_0e579cfa';
-                  readonly prefix: 'labTestPrice_labId_idx';
-                  readonly columns: readonly ['labId'];
-                  readonly unique: false;
-                },
-              ];
-              foreignKeys: readonly [
-                {
-                  readonly source: {
-                    readonly namespaceId: 'public' & NamespaceId;
-                    readonly tableName: 'labTestPrice';
-                    readonly columns: readonly ['labId'];
-                  };
-                  readonly target: {
-                    readonly namespaceId: 'public' & NamespaceId;
-                    readonly tableName: 'lab';
-                    readonly columns: readonly ['id'];
-                  };
-                },
-              ];
             };
             readonly patient: {
               columns: {
@@ -2210,11 +1621,6 @@ type ContractBase = Omit<
                     readonly value: DefaultLiteralValue<'pg/text@1', 'PENDING'>;
                   };
                 };
-                readonly sampleCollectedAt: {
-                  readonly nativeType: 'timestamptz';
-                  readonly codecId: 'pg/timestamptz-string@1';
-                  readonly nullable: true;
-                };
                 readonly reportId: {
                   readonly nativeType: 'int4';
                   readonly codecId: 'pg/int4@1';
@@ -2490,10 +1896,6 @@ type ContractBase = Omit<
   readonly roots: {
     readonly admin: { readonly namespace: 'public' & NamespaceId; readonly model: 'Admin' };
     readonly lab: { readonly namespace: 'public' & NamespaceId; readonly model: 'Lab' };
-    readonly labTestPrice: {
-      readonly namespace: 'public' & NamespaceId;
-      readonly model: 'LabTestPrice';
-    };
     readonly session: { readonly namespace: 'public' & NamespaceId; readonly model: 'Session' };
     readonly customTest: {
       readonly namespace: 'public' & NamespaceId;
@@ -2501,15 +1903,6 @@ type ContractBase = Omit<
     };
     readonly patient: { readonly namespace: 'public' & NamespaceId; readonly model: 'Patient' };
     readonly testOrder: { readonly namespace: 'public' & NamespaceId; readonly model: 'TestOrder' };
-    readonly invoice: { readonly namespace: 'public' & NamespaceId; readonly model: 'Invoice' };
-    readonly invoiceItem: {
-      readonly namespace: 'public' & NamespaceId;
-      readonly model: 'InvoiceItem';
-    };
-    readonly invoicePayment: {
-      readonly namespace: 'public' & NamespaceId;
-      readonly model: 'InvoicePayment';
-    };
     readonly testOrderTest: {
       readonly namespace: 'public' & NamespaceId;
       readonly model: 'TestOrderTest';
@@ -2696,298 +2089,6 @@ type ContractBase = Omit<
               };
             };
           };
-          readonly Invoice: {
-            readonly fields: {
-              readonly id: {
-                readonly nullable: false;
-                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/int4@1' };
-              };
-              readonly invoiceNumber: {
-                readonly nullable: false;
-                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
-              };
-              readonly labId: {
-                readonly nullable: false;
-                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/int4@1' };
-              };
-              readonly patientId: {
-                readonly nullable: false;
-                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/int4@1' };
-              };
-              readonly testOrderId: {
-                readonly nullable: false;
-                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/int4@1' };
-              };
-              readonly subtotal: {
-                readonly nullable: false;
-                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/numeric@1' };
-              };
-              readonly discountPercent: {
-                readonly nullable: false;
-                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/numeric@1' };
-              };
-              readonly discount: {
-                readonly nullable: false;
-                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/numeric@1' };
-              };
-              readonly tax: {
-                readonly nullable: false;
-                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/numeric@1' };
-              };
-              readonly grandTotal: {
-                readonly nullable: false;
-                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/numeric@1' };
-              };
-              readonly amountPaid: {
-                readonly nullable: false;
-                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/numeric@1' };
-              };
-              readonly paymentMode: {
-                readonly nullable: true;
-                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
-              };
-              readonly paymentStatus: {
-                readonly nullable: false;
-                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
-              };
-              readonly generatedBy: {
-                readonly nullable: false;
-                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
-              };
-              readonly sampleType: {
-                readonly nullable: true;
-                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
-              };
-              readonly terms: {
-                readonly nullable: true;
-                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
-              };
-              readonly status: {
-                readonly nullable: false;
-                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
-              };
-              readonly createdAt: {
-                readonly nullable: false;
-                readonly type: {
-                  readonly kind: 'scalar';
-                  readonly codecId: 'pg/timestamptz-string@1';
-                };
-              };
-              readonly updatedAt: {
-                readonly nullable: false;
-                readonly type: {
-                  readonly kind: 'scalar';
-                  readonly codecId: 'pg/timestamptz-string@1';
-                };
-              };
-            };
-            readonly relations: {
-              readonly items: {
-                readonly to: {
-                  readonly namespace: 'public' & NamespaceId;
-                  readonly model: 'InvoiceItem';
-                };
-                readonly cardinality: '1:N';
-                readonly on: {
-                  readonly localFields: readonly ['id'];
-                  readonly targetFields: readonly ['invoiceId'];
-                };
-              };
-              readonly lab: {
-                readonly to: { readonly namespace: 'public' & NamespaceId; readonly model: 'Lab' };
-                readonly cardinality: 'N:1';
-                readonly on: {
-                  readonly localFields: readonly ['labId'];
-                  readonly targetFields: readonly ['id'];
-                };
-              };
-              readonly patient: {
-                readonly to: {
-                  readonly namespace: 'public' & NamespaceId;
-                  readonly model: 'Patient';
-                };
-                readonly cardinality: 'N:1';
-                readonly on: {
-                  readonly localFields: readonly ['patientId'];
-                  readonly targetFields: readonly ['id'];
-                };
-              };
-              readonly payments: {
-                readonly to: {
-                  readonly namespace: 'public' & NamespaceId;
-                  readonly model: 'InvoicePayment';
-                };
-                readonly cardinality: '1:N';
-                readonly on: {
-                  readonly localFields: readonly ['id'];
-                  readonly targetFields: readonly ['invoiceId'];
-                };
-              };
-              readonly testOrder: {
-                readonly to: {
-                  readonly namespace: 'public' & NamespaceId;
-                  readonly model: 'TestOrder';
-                };
-                readonly cardinality: 'N:1';
-                readonly on: {
-                  readonly localFields: readonly ['testOrderId'];
-                  readonly targetFields: readonly ['id'];
-                };
-              };
-            };
-            readonly storage: {
-              readonly table: 'invoice';
-              readonly namespaceId: 'public';
-              readonly fields: {
-                readonly id: { readonly column: 'id' };
-                readonly invoiceNumber: { readonly column: 'invoiceNumber' };
-                readonly labId: { readonly column: 'labId' };
-                readonly patientId: { readonly column: 'patientId' };
-                readonly testOrderId: { readonly column: 'testOrderId' };
-                readonly subtotal: { readonly column: 'subtotal' };
-                readonly discountPercent: { readonly column: 'discountPercent' };
-                readonly discount: { readonly column: 'discount' };
-                readonly tax: { readonly column: 'tax' };
-                readonly grandTotal: { readonly column: 'grandTotal' };
-                readonly amountPaid: { readonly column: 'amountPaid' };
-                readonly paymentMode: { readonly column: 'paymentMode' };
-                readonly paymentStatus: { readonly column: 'paymentStatus' };
-                readonly generatedBy: { readonly column: 'generatedBy' };
-                readonly sampleType: { readonly column: 'sampleType' };
-                readonly terms: { readonly column: 'terms' };
-                readonly status: { readonly column: 'status' };
-                readonly createdAt: { readonly column: 'createdAt' };
-                readonly updatedAt: { readonly column: 'updatedAt' };
-              };
-            };
-          };
-          readonly InvoiceItem: {
-            readonly fields: {
-              readonly id: {
-                readonly nullable: false;
-                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/int4@1' };
-              };
-              readonly invoiceId: {
-                readonly nullable: false;
-                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/int4@1' };
-              };
-              readonly testCode: {
-                readonly nullable: false;
-                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
-              };
-              readonly testName: {
-                readonly nullable: false;
-                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
-              };
-              readonly quantity: {
-                readonly nullable: false;
-                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/int4@1' };
-              };
-              readonly unitPrice: {
-                readonly nullable: false;
-                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/numeric@1' };
-              };
-              readonly amount: {
-                readonly nullable: false;
-                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/numeric@1' };
-              };
-              readonly createdAt: {
-                readonly nullable: false;
-                readonly type: {
-                  readonly kind: 'scalar';
-                  readonly codecId: 'pg/timestamptz-string@1';
-                };
-              };
-            };
-            readonly relations: {
-              readonly invoice: {
-                readonly to: {
-                  readonly namespace: 'public' & NamespaceId;
-                  readonly model: 'Invoice';
-                };
-                readonly cardinality: 'N:1';
-                readonly on: {
-                  readonly localFields: readonly ['invoiceId'];
-                  readonly targetFields: readonly ['id'];
-                };
-              };
-            };
-            readonly storage: {
-              readonly table: 'invoiceItem';
-              readonly namespaceId: 'public';
-              readonly fields: {
-                readonly id: { readonly column: 'id' };
-                readonly invoiceId: { readonly column: 'invoiceId' };
-                readonly testCode: { readonly column: 'testCode' };
-                readonly testName: { readonly column: 'testName' };
-                readonly quantity: { readonly column: 'quantity' };
-                readonly unitPrice: { readonly column: 'unitPrice' };
-                readonly amount: { readonly column: 'amount' };
-                readonly createdAt: { readonly column: 'createdAt' };
-              };
-            };
-          };
-          readonly InvoicePayment: {
-            readonly fields: {
-              readonly id: {
-                readonly nullable: false;
-                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/int4@1' };
-              };
-              readonly invoiceId: {
-                readonly nullable: false;
-                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/int4@1' };
-              };
-              readonly amount: {
-                readonly nullable: false;
-                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/numeric@1' };
-              };
-              readonly mode: {
-                readonly nullable: false;
-                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
-              };
-              readonly transactionId: {
-                readonly nullable: true;
-                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
-              };
-              readonly receivedBy: {
-                readonly nullable: false;
-                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
-              };
-              readonly createdAt: {
-                readonly nullable: false;
-                readonly type: {
-                  readonly kind: 'scalar';
-                  readonly codecId: 'pg/timestamptz-string@1';
-                };
-              };
-            };
-            readonly relations: {
-              readonly invoice: {
-                readonly to: {
-                  readonly namespace: 'public' & NamespaceId;
-                  readonly model: 'Invoice';
-                };
-                readonly cardinality: 'N:1';
-                readonly on: {
-                  readonly localFields: readonly ['invoiceId'];
-                  readonly targetFields: readonly ['id'];
-                };
-              };
-            };
-            readonly storage: {
-              readonly table: 'invoicePayment';
-              readonly namespaceId: 'public';
-              readonly fields: {
-                readonly id: { readonly column: 'id' };
-                readonly invoiceId: { readonly column: 'invoiceId' };
-                readonly amount: { readonly column: 'amount' };
-                readonly mode: { readonly column: 'mode' };
-                readonly transactionId: { readonly column: 'transactionId' };
-                readonly receivedBy: { readonly column: 'receivedBy' };
-                readonly createdAt: { readonly column: 'createdAt' };
-              };
-            };
-          };
           readonly Lab: {
             readonly fields: {
               readonly id: {
@@ -3093,17 +2194,6 @@ type ContractBase = Omit<
                   readonly targetFields: readonly ['labId'];
                 };
               };
-              readonly invoices: {
-                readonly to: {
-                  readonly namespace: 'public' & NamespaceId;
-                  readonly model: 'Invoice';
-                };
-                readonly cardinality: '1:N';
-                readonly on: {
-                  readonly localFields: readonly ['id'];
-                  readonly targetFields: readonly ['labId'];
-                };
-              };
               readonly patients: {
                 readonly to: {
                   readonly namespace: 'public' & NamespaceId;
@@ -3137,17 +2227,6 @@ type ContractBase = Omit<
                   readonly targetFields: readonly ['labId'];
                 };
               };
-              readonly testPrices: {
-                readonly to: {
-                  readonly namespace: 'public' & NamespaceId;
-                  readonly model: 'LabTestPrice';
-                };
-                readonly cardinality: '1:N';
-                readonly on: {
-                  readonly localFields: readonly ['id'];
-                  readonly targetFields: readonly ['labId'];
-                };
-              };
             };
             readonly storage: {
               readonly table: 'lab';
@@ -3172,62 +2251,6 @@ type ContractBase = Omit<
                 readonly directorQualification: { readonly column: 'directorQualification' };
                 readonly logoUrl: { readonly column: 'logoUrl' };
                 readonly signatureUrl: { readonly column: 'signatureUrl' };
-                readonly createdAt: { readonly column: 'createdAt' };
-                readonly updatedAt: { readonly column: 'updatedAt' };
-              };
-            };
-          };
-          readonly LabTestPrice: {
-            readonly fields: {
-              readonly id: {
-                readonly nullable: false;
-                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/int4@1' };
-              };
-              readonly labId: {
-                readonly nullable: false;
-                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/int4@1' };
-              };
-              readonly testCode: {
-                readonly nullable: false;
-                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
-              };
-              readonly price: {
-                readonly nullable: false;
-                readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/numeric@1' };
-              };
-              readonly createdAt: {
-                readonly nullable: false;
-                readonly type: {
-                  readonly kind: 'scalar';
-                  readonly codecId: 'pg/timestamptz-string@1';
-                };
-              };
-              readonly updatedAt: {
-                readonly nullable: false;
-                readonly type: {
-                  readonly kind: 'scalar';
-                  readonly codecId: 'pg/timestamptz-string@1';
-                };
-              };
-            };
-            readonly relations: {
-              readonly lab: {
-                readonly to: { readonly namespace: 'public' & NamespaceId; readonly model: 'Lab' };
-                readonly cardinality: 'N:1';
-                readonly on: {
-                  readonly localFields: readonly ['labId'];
-                  readonly targetFields: readonly ['id'];
-                };
-              };
-            };
-            readonly storage: {
-              readonly table: 'labTestPrice';
-              readonly namespaceId: 'public';
-              readonly fields: {
-                readonly id: { readonly column: 'id' };
-                readonly labId: { readonly column: 'labId' };
-                readonly testCode: { readonly column: 'testCode' };
-                readonly price: { readonly column: 'price' };
                 readonly createdAt: { readonly column: 'createdAt' };
                 readonly updatedAt: { readonly column: 'updatedAt' };
               };
@@ -3298,17 +2321,6 @@ type ContractBase = Omit<
               };
             };
             readonly relations: {
-              readonly invoices: {
-                readonly to: {
-                  readonly namespace: 'public' & NamespaceId;
-                  readonly model: 'Invoice';
-                };
-                readonly cardinality: '1:N';
-                readonly on: {
-                  readonly localFields: readonly ['id'];
-                  readonly targetFields: readonly ['patientId'];
-                };
-              };
               readonly lab: {
                 readonly to: { readonly namespace: 'public' & NamespaceId; readonly model: 'Lab' };
                 readonly cardinality: 'N:1';
@@ -3732,13 +2744,6 @@ type ContractBase = Omit<
                 readonly nullable: false;
                 readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/text@1' };
               };
-              readonly sampleCollectedAt: {
-                readonly nullable: true;
-                readonly type: {
-                  readonly kind: 'scalar';
-                  readonly codecId: 'pg/timestamptz-string@1';
-                };
-              };
               readonly reportId: {
                 readonly nullable: true;
                 readonly type: { readonly kind: 'scalar'; readonly codecId: 'pg/int4@1' };
@@ -3759,17 +2764,6 @@ type ContractBase = Omit<
               };
             };
             readonly relations: {
-              readonly invoice: {
-                readonly to: {
-                  readonly namespace: 'public' & NamespaceId;
-                  readonly model: 'Invoice';
-                };
-                readonly cardinality: '1:1';
-                readonly on: {
-                  readonly localFields: readonly ['id'];
-                  readonly targetFields: readonly ['testOrderId'];
-                };
-              };
               readonly lab: {
                 readonly to: { readonly namespace: 'public' & NamespaceId; readonly model: 'Lab' };
                 readonly cardinality: 'N:1';
@@ -3822,7 +2816,6 @@ type ContractBase = Omit<
                 readonly labId: { readonly column: 'labId' };
                 readonly referredBy: { readonly column: 'referredBy' };
                 readonly status: { readonly column: 'status' };
-                readonly sampleCollectedAt: { readonly column: 'sampleCollectedAt' };
                 readonly reportId: { readonly column: 'reportId' };
                 readonly createdAt: { readonly column: 'createdAt' };
                 readonly updatedAt: { readonly column: 'updatedAt' };
@@ -4065,25 +3058,7 @@ type ContractBase = Omit<
         {
           readonly ref: {
             readonly namespace: 'public';
-            readonly table: 'invoice';
-            readonly column: 'updatedAt';
-          };
-          readonly onCreate: { readonly kind: 'generator'; readonly id: 'timestampNow' };
-          readonly onUpdate: { readonly kind: 'generator'; readonly id: 'timestampNow' };
-        },
-        {
-          readonly ref: {
-            readonly namespace: 'public';
             readonly table: 'lab';
-            readonly column: 'updatedAt';
-          };
-          readonly onCreate: { readonly kind: 'generator'; readonly id: 'timestampNow' };
-          readonly onUpdate: { readonly kind: 'generator'; readonly id: 'timestampNow' };
-        },
-        {
-          readonly ref: {
-            readonly namespace: 'public';
-            readonly table: 'labTestPrice';
             readonly column: 'updatedAt';
           };
           readonly onCreate: { readonly kind: 'generator'; readonly id: 'timestampNow' };

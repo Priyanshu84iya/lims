@@ -34,9 +34,27 @@ model Lab {
   patients    Patient[]
   reports     Report[]
   customTests CustomTest[]
+  testOrders  TestOrder[]
+  invoices    Invoice[]
+  testPrices  LabTestPrice[]
 
   createdAt    TimestamptzString @default(now())
   updatedAt    temporal.updatedAtString()
+}
+
+// Lab-specific selling price for a catalog investigation. Absent rows fall
+// back to the system-suggested default price, never to zero.
+model LabTestPrice {
+  id       Int    @id @default(autoincrement())
+  lab      Lab    @relation(fields: [labId], references: [id])
+  labId    Int
+  testCode String
+  price    Decimal
+
+  createdAt    TimestamptzString @default(now())
+  updatedAt    temporal.updatedAtString()
+
+  @@unique([labId, testCode])
 }
 
 model Session {
@@ -78,11 +96,154 @@ model Patient {
   referredBy  String?
 
   reports     Report[]
+  testOrders  TestOrder[]
+  invoices    Invoice[]
 
-  createdAt   TimestamptzString @default(now())
-  updatedAt   temporal.updatedAtString()
+  createdAt    TimestamptzString @default(now())
+  updatedAt    temporal.updatedAtString()
 
   @@unique([labId, patientCode])
+}
+
+// Reception booking: tests selected for a patient visit. Results are entered
+// by lab staff and a Report is generated from the completed order.
+model TestOrder {
+  id          Int      @id @default(autoincrement())
+  orderNumber String   @unique
+
+  patient     Patient  @relation(fields: [patientId], references: [id])
+  patientId   Int
+
+  lab         Lab      @relation(fields: [labId], references: [id])
+  labId       Int
+
+  referredBy  String?
+
+  status      String   @default("PENDING")
+
+  sampleCollectedAt TimestamptzString?
+
+  report      Report?  @relation(fields: [reportId], references: [id])
+  reportId    Int?
+
+  invoice     Invoice?
+
+  tests       TestOrderTest[]
+
+  createdAt    TimestamptzString @default(now())
+  updatedAt    temporal.updatedAtString()
+}
+
+// Financial record for a test order. Line items snapshot the prices charged
+// at billing time; later catalog price changes never alter existing invoices.
+model Invoice {
+  id            Int    @id @default(autoincrement())
+  invoiceNumber String @unique
+
+  lab           Lab        @relation(fields: [labId], references: [id])
+  labId         Int
+  patient       Patient    @relation(fields: [patientId], references: [id])
+  patientId     Int
+  testOrder     TestOrder  @relation(fields: [testOrderId], references: [id])
+  testOrderId   Int
+
+  subtotal        Decimal
+  discountPercent Decimal @default("0")
+  discount        Decimal @default("0")
+  tax             Decimal @default("0")
+  grandTotal    Decimal
+  amountPaid    Decimal    @default("0")
+
+  paymentMode   String?
+  paymentStatus String     @default("UNPAID")
+
+  generatedBy   String
+  sampleType    String?
+  terms         String?
+
+  status        String     @default("ACTIVE")
+
+  items         InvoiceItem[]
+  payments      InvoicePayment[]
+
+  createdAt    TimestamptzString @default(now())
+  updatedAt    temporal.updatedAtString()
+
+  // One invoice per order — refreshes and double-clicks cannot duplicate.
+  @@unique([testOrderId])
+}
+
+// Historical price snapshot for a single billed investigation.
+model InvoiceItem {
+  id          Int     @id @default(autoincrement())
+  invoice     Invoice @relation(fields: [invoiceId], references: [id])
+  invoiceId   Int
+
+  testCode    String
+  testName    String
+  quantity    Int     @default(1)
+  unitPrice   Decimal
+  amount      Decimal
+
+  createdAt   TimestamptzString @default(now())
+}
+
+// Immutable payment ledger entry; invoice totals derive from these rows.
+model InvoicePayment {
+  id            Int     @id @default(autoincrement())
+  invoice       Invoice @relation(fields: [invoiceId], references: [id])
+  invoiceId     Int
+
+  amount        Decimal
+  mode          String
+  transactionId String?
+  receivedBy    String
+
+  createdAt     TimestamptzString @default(now())
+}
+
+model TestOrderTest {
+  id          Int @id @default(autoincrement())
+
+  testOrder   TestOrder @relation(fields: [testOrderId], references: [id])
+  testOrderId Int
+
+  testCode    String
+  testName    String
+  category    String?
+
+  status      String   @default("PENDING")
+
+  results     TestOrderResult[]
+
+  createdAt    TimestamptzString @default(now())
+  updatedAt    temporal.updatedAtString()
+}
+
+model TestOrderResult {
+  id              Int @id @default(autoincrement())
+
+  testOrderTest   TestOrderTest @relation(fields: [testOrderTestId], references: [id])
+  testOrderTestId Int
+
+  parameterCode   String
+  parameterName   String
+
+  result          String?
+
+  unit            String?
+
+  referenceMin    String?
+  referenceMax    String?
+  referenceDisplay String?
+  inputType       String?
+
+  status          String?
+
+  sortOrder       Int      @default(0)
+
+  createdAt       TimestamptzString @default(now())
+  updatedAt       temporal.updatedAtString()
 }
 
 model Report {
@@ -103,6 +264,7 @@ model Report {
   reportDate       TimestamptzString?
 
   tests           ReportTest[]
+  testOrders      TestOrder[]
 
   createdAt       TimestamptzString @default(now())
   updatedAt       temporal.updatedAtString()

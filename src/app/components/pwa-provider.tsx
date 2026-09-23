@@ -18,6 +18,18 @@ export function PwaProvider() {
 
   useEffect(() => {
     if ("serviceWorker" in navigator) {
+      if (process.env.NODE_ENV !== "production") {
+        // Dev chunks are not content-hashed; a cached stale bundle hydrates
+        // against fresh HTML and triggers React hydration mismatches.
+        navigator.serviceWorker
+          .getRegistrations()
+          .then((registrations) => {
+            registrations.forEach((registration) => registration.unregister());
+          })
+          .catch(() => {});
+        return;
+      }
+
       navigator.serviceWorker
         .register("/sw.js", { scope: "/" })
         .then((registration) => {
@@ -57,9 +69,11 @@ export function PwaProvider() {
     window.addEventListener("appinstalled", onAppInstalled);
 
     // Standalone display means the app is already installed.
-    setIsInstalled(
-      window.matchMedia("(display-mode: standalone)").matches ||
-        (window.navigator as { standalone?: boolean }).standalone === true
+    queueMicrotask(() =>
+      setIsInstalled(
+        window.matchMedia("(display-mode: standalone)").matches ||
+          (window.navigator as { standalone?: boolean }).standalone === true
+      )
     );
 
     return () => {
